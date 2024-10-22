@@ -94,6 +94,7 @@ namespace Gameplay
 			switch (search_type)
 			{
 			case SearchType::LINEAR_SEARCH:
+				current_operation_delay = collection_model->linear_search_delay;
 				processLinearSearch();
 				break;
 
@@ -145,6 +146,11 @@ namespace Gameplay
 			return number_of_array_access;
 		}
 
+		int StickCollectionController::getDelayMilliseconds()
+		{
+			return current_operation_delay;
+		}
+
 		void StickCollectionController::reset()
 		{
 			shuffleSticks();
@@ -191,6 +197,7 @@ namespace Gameplay
 		{
 			number_of_comparisons = 0;
 			number_of_array_access = 0;
+			current_operation_delay = 0;
 		}
 
 		void StickCollectionController::destroy()

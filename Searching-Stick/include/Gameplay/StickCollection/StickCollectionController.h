@@ -17,6 +17,7 @@ namespace Gameplay
 		private:
 			int number_of_comparisons;
 			int number_of_array_access;
+			int current_operation_delay;
 
 			StickCollectionView* collection_view;
 			StickCollectionModel* collection_model;
@@ -57,6 +58,7 @@ namespace Gameplay
 			int getNumberOfSticks();
 			int getNumberOfComparisons();
 			int getNumberOfArrayAccess();
+			int getDelayMilliseconds();
 		};
 	}
 }
