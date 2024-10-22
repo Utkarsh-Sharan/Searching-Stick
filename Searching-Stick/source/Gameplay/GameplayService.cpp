@@ -24,6 +24,13 @@ namespace Gameplay
 	{
 		gameplay_controller->initialize();
 		collection_controller->initialize();
+
+		initializeRandomSeed();
+	}
+
+	void GameplayService::initializeRandomSeed()
+	{
+		std::srand(static_cast<unsigned int>(std::time(nullptr)));
 	}
 
 	void GameplayService::update()
@@ -40,7 +47,7 @@ namespace Gameplay
 
 	void GameplayService::searchElement(Collection::SearchType search_type)
 	{
-		//collection_controller->searchElement();
+		collection_controller->searchElement(search_type);
 	}
 
 	Collection::SearchType GameplayService::getCurrentSearchType()
