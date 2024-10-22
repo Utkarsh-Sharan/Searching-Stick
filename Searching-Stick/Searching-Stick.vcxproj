@@ -157,6 +157,7 @@
     <ClInclude Include="include\Gameplay\GameplayController.h" />
     <ClInclude Include="include\Gameplay\GameplayService.h" />
     <ClInclude Include="include\Gameplay\GameplayView.h" />
+    <ClInclude Include="include\Gameplay\StickCollection\Stick.h" />
     <ClInclude Include="include\Global\Config.h" />
     <ClInclude Include="include\Global\ServiceLocator.h" />
     <ClInclude Include="include\Graphics\GraphicService.h" />
