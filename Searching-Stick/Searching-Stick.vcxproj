@@ -135,6 +135,9 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\Event\EventService.cpp" />
+    <ClCompile Include="source\Gameplay\GameplayController.cpp" />
+    <ClCompile Include="source\Gameplay\GameplayService.cpp" />
+    <ClCompile Include="source\Gameplay\GameplayView.cpp" />
     <ClCompile Include="source\Global\Config.cpp" />
     <ClCompile Include="source\Global\ServiceLocator.cpp" />
     <ClCompile Include="source\Graphics\GraphicService.cpp" />
@@ -151,6 +154,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Event\EventService.h" />
+    <ClInclude Include="include\Gameplay\GameplayController.h" />
+    <ClInclude Include="include\Gameplay\GameplayService.h" />
+    <ClInclude Include="include\Gameplay\GameplayView.h" />
     <ClInclude Include="include\Global\Config.h" />
     <ClInclude Include="include\Global\ServiceLocator.h" />
     <ClInclude Include="include\Graphics\GraphicService.h" />
@@ -165,6 +171,25 @@
     <ClInclude Include="include\UI\UIElement\TextView.h" />
     <ClInclude Include="include\UI\UIElement\UIView.h" />
     <ClInclude Include="include\UI\UIService.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\binary_search_button.png" />
+    <Image Include="assets\textures\linear_search_button.png" />
+    <Image Include="assets\textures\menu_button.png" />
+    <Image Include="assets\textures\menu_button_large.png" />
+    <Image Include="assets\textures\outscal_logo.png" />
+    <Image Include="assets\textures\play_button.png" />
+    <Image Include="assets\textures\quit.png" />
+    <Image Include="assets\textures\quit_button.png" />
+    <Image Include="assets\textures\searching_bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\sounds\button_click_sound.wav" />
+    <Media Include="assets\sounds\compare_sfx.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\bubbleBobble.ttf" />
+    <Font Include="assets\fonts\DS_DIGIB.TTF" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
