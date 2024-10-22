@@ -79,6 +79,21 @@ namespace Gameplay
 		{
 			for (int i = 0; i < sticks.size(); i++)
 				sticks[i]->stick_view->update();
+
+			processSearchThreadState();
+		}
+
+		void StickCollectionController::processSearchThreadState()
+		{
+			if (search_thread.joinable() && stick_to_search == nullptr)
+			{
+				joinThreads();
+			}
+		}
+
+		void StickCollectionController::joinThreads()
+		{
+			search_thread.join();
 		}
 
 		void StickCollectionController::render()
@@ -95,7 +110,10 @@ namespace Gameplay
 			{
 			case SearchType::LINEAR_SEARCH:
 				current_operation_delay = collection_model->linear_search_delay;
-				processLinearSearch();
+				//time_complexity = "O(n)";
+				// a new thread, 'search_thread' is created to execute the 'processLinearSearch'
+				// 'this' keyword is passed to provide the context of the current 'StickCollectionContoller' object, allowing 'processLinearSearch' to access its data
+				search_thread = std::thread(&StickCollectionController::processLinearSearch, this);
 				break;
 
 			//case SearchType::BINARY_SEARCH:
@@ -121,6 +139,10 @@ namespace Gameplay
 				else
 				{
 					sticks[i]->stick_view->setFillColor(collection_model->processing_element_color);
+
+					//will pause the thread to visualize search operation
+					std::this_thread::sleep_for(std::chrono::milliseconds(current_operation_delay));
+
 					sticks[i]->stick_view->setFillColor(collection_model->element_color);
 				}
 			}
@@ -153,6 +175,9 @@ namespace Gameplay
 
 		void StickCollectionController::reset()
 		{
+			if (search_thread.joinable()) 
+				search_thread.join();
+
 			shuffleSticks();
 			updateSticksPosition();
 			resetSticksColor();
@@ -202,6 +227,9 @@ namespace Gameplay
 
 		void StickCollectionController::destroy()
 		{
+			if (search_thread.joinable())
+				search_thread.join();
+
 			for (int i = 0; i < sticks.size(); i++) 
 				delete(sticks[i]);
 

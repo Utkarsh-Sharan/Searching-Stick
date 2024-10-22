@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <random>
+#include <thread>
 
 namespace Gameplay
 {
@@ -25,6 +26,7 @@ namespace Gameplay
 			SearchType search_type;
 
 			Stick* stick_to_search;
+			std::thread search_thread;
 
 			void initializeSticks();
 			float calculateStickWidth();
@@ -39,6 +41,8 @@ namespace Gameplay
 			float calculateStickHeight(int array_pos);
 
 			void processLinearSearch();
+			void processSearchThreadState();
+			void joinThreads();
 
 			void destroy();
 
