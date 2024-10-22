@@ -47,7 +47,7 @@ namespace Gameplay
 
 	void GameplayService::searchElement(Collection::SearchType search_type)
 	{
-		//collection_controller->searchElement();
+		collection_controller->searchElement(search_type);
 	}
 
 	Collection::SearchType GameplayService::getCurrentSearchType()

@@ -88,7 +88,32 @@ namespace Gameplay
 
 		void StickCollectionController::searchElement(SearchType type)
 		{
-			//todo
+			switch (type)
+			{
+			case SearchType::LINEAR_SEARCH:
+				search_type = type;
+				processLinearSearch();
+				break;
+
+			case SearchType::BINARY_SEARCH:
+				//to do
+			}
+		}
+
+		void StickCollectionController::processLinearSearch()
+		{
+			for (int i = 0; i < getNumberOfSticks(); i++)
+			{
+				sticks[i]->stick_view->setFillColor(collection_model->processing_element_color);
+				sticks[i]->stick_view->setFillColor(collection_model->element_color);
+
+				if (sticks[i] == stick_to_search)
+				{
+					sticks[i]->stick_view->setFillColor(collection_model->found_element_color);
+					stick_to_search = nullptr;
+					return;
+				}
+			}
 		}
 
 		SearchType StickCollectionController::getSearchType()
@@ -106,6 +131,7 @@ namespace Gameplay
 			updateSticksPosition();
 			resetSticksColor();
 			shuffleSticks();
+			resetSearchStick();
 		}
 
 		void StickCollectionController::updateSticksPosition()
@@ -133,6 +159,12 @@ namespace Gameplay
 			std::mt19937 random_engine(device());
 
 			std::shuffle(sticks.begin(), sticks.end(), random_engine);
+		}
+
+		void StickCollectionController::resetSearchStick()
+		{
+			stick_to_search = sticks[std::rand() % sticks.size()];
+			stick_to_search->stick_view->setFillColor(collection_model->search_element_color);
 		}
 
 		void StickCollectionController::destroy()
