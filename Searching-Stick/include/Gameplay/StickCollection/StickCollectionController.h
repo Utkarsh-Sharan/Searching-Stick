@@ -15,6 +15,9 @@ namespace Gameplay
 		class StickCollectionController
 		{
 		private:
+			int number_of_comparisons;
+			int number_of_array_access;
+
 			StickCollectionView* collection_view;
 			StickCollectionModel* collection_model;
 			std::vector<Stick*> sticks;
@@ -29,6 +32,7 @@ namespace Gameplay
 			void resetSticksColor();
 			void shuffleSticks();
 			void resetSearchStick();
+			void resetVariables();
 
 			void initializeSticksArray();
 			float calculateStickHeight(int array_pos);
@@ -51,6 +55,8 @@ namespace Gameplay
 			SearchType getSearchType();
 
 			int getNumberOfSticks();
+			int getNumberOfComparisons();
+			int getNumberOfArrayAccess();
 		};
 	}
 }

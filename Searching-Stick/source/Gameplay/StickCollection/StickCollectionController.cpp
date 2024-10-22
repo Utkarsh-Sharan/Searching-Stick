@@ -10,6 +10,7 @@ namespace Gameplay
 	namespace Collection
 	{
 		using namespace Global;
+		using namespace Sound;
 
 		StickCollectionController::StickCollectionController()
 		{
@@ -88,30 +89,38 @@ namespace Gameplay
 
 		void StickCollectionController::searchElement(SearchType type)
 		{
-			switch (type)
+			search_type = type;
+
+			switch (search_type)
 			{
 			case SearchType::LINEAR_SEARCH:
-				search_type = type;
 				processLinearSearch();
 				break;
 
-			case SearchType::BINARY_SEARCH:
+			//case SearchType::BINARY_SEARCH:
 				//to do
 			}
 		}
 
 		void StickCollectionController::processLinearSearch()
 		{
-			for (int i = 0; i < getNumberOfSticks(); i++)
+			for (int i = 0; i < sticks.size(); i++)
 			{
-				sticks[i]->stick_view->setFillColor(collection_model->processing_element_color);
-				sticks[i]->stick_view->setFillColor(collection_model->element_color);
+				number_of_comparisons++;
+				number_of_array_access++;
+
+				ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::COMPARE_SFX);
 
 				if (sticks[i] == stick_to_search)
 				{
 					sticks[i]->stick_view->setFillColor(collection_model->found_element_color);
 					stick_to_search = nullptr;
 					return;
+				}
+				else
+				{
+					sticks[i]->stick_view->setFillColor(collection_model->processing_element_color);
+					sticks[i]->stick_view->setFillColor(collection_model->element_color);
 				}
 			}
 		}
@@ -126,12 +135,23 @@ namespace Gameplay
 			return collection_model->number_of_elements;
 		}
 
+		int StickCollectionController::getNumberOfComparisons()
+		{
+			return number_of_comparisons;
+		}
+
+		int StickCollectionController::getNumberOfArrayAccess()
+		{
+			return number_of_array_access;
+		}
+
 		void StickCollectionController::reset()
 		{
+			shuffleSticks();
 			updateSticksPosition();
 			resetSticksColor();
-			shuffleSticks();
 			resetSearchStick();
+			resetVariables();
 		}
 
 		void StickCollectionController::updateSticksPosition()
@@ -165,6 +185,12 @@ namespace Gameplay
 		{
 			stick_to_search = sticks[std::rand() % sticks.size()];
 			stick_to_search->stick_view->setFillColor(collection_model->search_element_color);
+		}
+
+		void StickCollectionController::resetVariables()
+		{
+			number_of_comparisons = 0;
+			number_of_array_access = 0;
 		}
 
 		void StickCollectionController::destroy()
