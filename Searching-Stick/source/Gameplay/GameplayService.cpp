@@ -57,11 +57,12 @@ namespace Gameplay
 
 	int GameplayService::getNumberOfSticks()
 	{
-		return 0;
+		return collection_controller->getNumberOfSticks();
 	}
 
 	void GameplayService::reset()
 	{
-
+		gameplay_controller->reset();
+		collection_controller->reset();
 	}
 }
