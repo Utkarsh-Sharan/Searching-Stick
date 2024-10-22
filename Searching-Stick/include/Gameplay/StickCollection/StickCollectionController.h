@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <random>
+#include <thread>
 
 namespace Gameplay
 {
@@ -17,6 +18,7 @@ namespace Gameplay
 		private:
 			int number_of_comparisons;
 			int number_of_array_access;
+			int current_operation_delay;
 
 			StickCollectionView* collection_view;
 			StickCollectionModel* collection_model;
@@ -24,6 +26,7 @@ namespace Gameplay
 			SearchType search_type;
 
 			Stick* stick_to_search;
+			std::thread search_thread;
 
 			void initializeSticks();
 			float calculateStickWidth();
@@ -38,6 +41,8 @@ namespace Gameplay
 			float calculateStickHeight(int array_pos);
 
 			void processLinearSearch();
+			void processSearchThreadState();
+			void joinThreads();
 
 			void destroy();
 
@@ -57,6 +62,7 @@ namespace Gameplay
 			int getNumberOfSticks();
 			int getNumberOfComparisons();
 			int getNumberOfArrayAccess();
+			int getDelayMilliseconds();
 		};
 	}
 }
