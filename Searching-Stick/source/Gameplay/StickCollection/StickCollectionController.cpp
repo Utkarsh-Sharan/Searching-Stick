@@ -110,7 +110,7 @@ namespace Gameplay
 			{
 			case SearchType::LINEAR_SEARCH:
 				current_operation_delay = collection_model->linear_search_delay;
-				//time_complexity = "O(n)";
+				time_complexity = "O(n)";
 				// a new thread, 'search_thread' is created to execute the 'processLinearSearch'
 				// 'this' keyword is passed to provide the context of the current 'StickCollectionContoller' object, allowing 'processLinearSearch' to access its data
 				search_thread = std::thread(&StickCollectionController::processLinearSearch, this);
@@ -173,6 +173,11 @@ namespace Gameplay
 			return current_operation_delay;
 		}
 
+		sf::String StickCollectionController::getTimeComplexity()
+		{
+			return sf::String();
+		}
+
 		void StickCollectionController::reset()
 		{
 			if (search_thread.joinable()) 
@@ -223,6 +228,8 @@ namespace Gameplay
 			number_of_comparisons = 0;
 			number_of_array_access = 0;
 			current_operation_delay = 0;
+
+			time_complexity = "O(1)";
 		}
 
 		void StickCollectionController::destroy()
