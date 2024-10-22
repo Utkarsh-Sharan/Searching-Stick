@@ -74,19 +74,6 @@ namespace Gameplay
 			return (static_cast<float>(array_pos + 1) / collection_model->number_of_elements) * collection_model->max_element_height;
 		}
 
-		void StickCollectionController::updateSticksPosition()
-		{
-			for (int i = 0; i < sticks.size(); i++)
-			{
-				//calculating x_position of the current stick based on its index, width and spacing between them
-				float x_position = (i * sticks[i]->stick_view->getSize().x) + ((i + 1) * collection_model->elements_spacing);
-
-				float y_position = collection_model->element_y_position - sticks[i]->stick_view->getSize().y;
-
-				sticks[i]->stick_view->setPosition(sf::Vector2f(x_position, y_position));
-			}
-		}
-
 		void StickCollectionController::update()
 		{
 			for (int i = 0; i < sticks.size(); i++)
@@ -118,12 +105,34 @@ namespace Gameplay
 		{
 			updateSticksPosition();
 			resetSticksColor();
+			shuffleSticks();
+		}
+
+		void StickCollectionController::updateSticksPosition()
+		{
+			for (int i = 0; i < sticks.size(); i++)
+			{
+				//calculating x_position of the current stick based on its index, width and spacing between them
+				float x_position = (i * sticks[i]->stick_view->getSize().x) + ((i + 1) * collection_model->elements_spacing);
+
+				float y_position = collection_model->element_y_position - sticks[i]->stick_view->getSize().y;
+
+				sticks[i]->stick_view->setPosition(sf::Vector2f(x_position, y_position));
+			}
 		}
 
 		void StickCollectionController::resetSticksColor()
 		{
 			for (int i = 0; i < sticks.size(); i++)
 				sticks[i]->stick_view->setFillColor(collection_model->element_color);
+		}
+
+		void StickCollectionController::shuffleSticks()
+		{
+			std::random_device device;
+			std::mt19937 random_engine(device());
+
+			std::shuffle(sticks.begin(), sticks.end(), random_engine);
 		}
 
 		void StickCollectionController::destroy()

@@ -13,6 +13,8 @@ namespace Gameplay
 		GameplayController* gameplay_controller;
 		Collection::StickCollectionController* collection_controller;
 
+		void initializeRandomSeed();
+
 	public:
 		GameplayService();
 		~GameplayService();

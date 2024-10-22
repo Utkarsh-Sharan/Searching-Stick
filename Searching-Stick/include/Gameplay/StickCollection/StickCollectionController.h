@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <random>
 
 namespace Gameplay
 {
@@ -23,8 +24,8 @@ namespace Gameplay
 			float calculateStickWidth();
 
 			void updateSticksPosition();
-
 			void resetSticksColor();
+			void shuffleSticks();
 
 			void initializeSticksArray();
 			float calculateStickHeight(int array_pos);
