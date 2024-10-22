@@ -1,4 +1,5 @@
 #include "Gameplay/GameplayService.h"
+#include "Gameplay/GameplayController.h"
 
 namespace Gameplay
 {
