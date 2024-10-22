@@ -1,16 +1,23 @@
 #pragma once
+#include "UI/UIElement/ImageView.h"
 
 namespace Gameplay
 {
 	class GameplayController;
 
-	class GampeplayView
+	class GameplayView
 	{
 	private:
+		const float background_alpha = 55.f;
+
+		GameplayController* gameplay_controller;
+		UI::UIElement::ImageView* background_image;
+
+		void initializeBackgroundImage();
 
 	public:
-		GampeplayView();
-		~GampeplayView();
+		GameplayView();
+		~GameplayView();
 
 		void initialize(GameplayController* gameplay_controller);
 		void update();

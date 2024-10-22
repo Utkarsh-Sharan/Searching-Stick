@@ -4,7 +4,7 @@ namespace Gameplay
 {
 	class GameplayView;
 
-	class GampeplayController
+	class GameplayController
 	{
 	private:
 		GameplayView* gameplay_view;
@@ -12,8 +12,8 @@ namespace Gameplay
 		void destroy();
 
 	public:
-		GampeplayController();
-		~GampeplayController();
+		GameplayController();
+		~GameplayController();
 
 		void initialize();
 		void update();

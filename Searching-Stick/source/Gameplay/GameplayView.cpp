@@ -1,34 +1,50 @@
 #include "Gameplay/GameplayView.h"
 #include "Gameplay/GameplayController.h"
+#include "Global/ServiceLocator.h"
+#include "Global/Config.h"
 
 namespace Gameplay
 {
-	GampeplayView::GampeplayView()
-	{
+	using namespace UI::UIElement;
+	using namespace Global;
 
+	GameplayView::GameplayView()
+	{
+		background_image = new ImageView();
 	}
 
-	GampeplayView::~GampeplayView()
+	GameplayView::~GameplayView()
 	{
+		background_image = nullptr;
 
+		delete(background_image);
 	}
 
-	void GampeplayView::initialize(GameplayController* gameplay_controller)
+	void GameplayView::initialize(GameplayController* gameplay_controller)
 	{
-
+		this->gameplay_controller = gameplay_controller;
+		initializeBackgroundImage();
 	}
 
-	void GampeplayView::update()
+	void GameplayView::initializeBackgroundImage()
 	{
+		sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 
+		background_image->initialize(Config::background_texture_path, game_window->getSize().x, game_window->getSize().y, sf::Vector2f(0, 0));
+		background_image->setImageAlpha(background_alpha);
 	}
 
-	void GampeplayView::render()
+	void GameplayView::update()
 	{
-
+		background_image->update();
 	}
 
-	void GampeplayView::reset()
+	void GameplayView::render()
+	{
+		background_image->render();
+	}
+
+	void GameplayView::reset()
 	{
 
 	}

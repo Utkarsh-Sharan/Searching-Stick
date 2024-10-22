@@ -3,38 +3,40 @@
 
 namespace Gameplay
 {
-	GampeplayController::GampeplayController()
+	GameplayController::GameplayController()
+	{
+		gameplay_view = new GameplayView();
+	}
+
+	GameplayController::~GameplayController()
+	{
+		destroy();
+	}
+
+	void GameplayController::initialize()
+	{
+		gameplay_view->initialize(this);
+	}
+
+	void GameplayController::update()
+	{
+		gameplay_view->update();
+	}
+
+	void GameplayController::render()
+	{
+		gameplay_view->render();
+	}
+
+	void GameplayController::reset()
 	{
 
 	}
 
-	GampeplayController::~GampeplayController()
+	void GameplayController::destroy()
 	{
+		gameplay_view = nullptr;
 
-	}
-
-	void GampeplayController::initialize()
-	{
-
-	}
-
-	void GampeplayController::update()
-	{
-
-	}
-
-	void GampeplayController::render()
-	{
-
-	}
-
-	void GampeplayController::reset()
-	{
-
-	}
-
-	void GampeplayController::destroy()
-	{
-
+		delete(gameplay_view);
 	}
 }
