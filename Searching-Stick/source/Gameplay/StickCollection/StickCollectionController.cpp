@@ -1,4 +1,6 @@
 #include "Gameplay/StickCollection/StickCollectionController.h"
+#include "Gameplay/StickCollection/StickCollectionModel.h"
+#include "Gameplay/StickCollection/StickCollectionView.h"
 
 namespace Gameplay
 {
@@ -52,6 +54,11 @@ namespace Gameplay
 		void StickCollectionController::render()
 		{
 
+		}
+
+		void StickCollectionController::searchElement(SearchType type)
+		{
+			//todo
 		}
 
 		SearchType StickCollectionController::getSearchType()
