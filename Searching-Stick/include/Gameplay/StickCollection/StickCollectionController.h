@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Gameplay/StickCollection/Stick.h"
 #include <vector>
 
 namespace Gameplay
@@ -10,6 +9,7 @@ namespace Gameplay
 		class StickCollectionModel;
 		enum class SearchType;
 		class StickCollectionView;
+		struct Stick;
 
 		class StickCollectionController
 		{
