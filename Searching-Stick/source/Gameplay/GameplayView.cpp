@@ -1,4 +1,5 @@
 #include "Gameplay/GameplayView.h"
+#include "Gameplay/GameplayController.h"
 
 namespace Gameplay
 {
@@ -12,7 +13,7 @@ namespace Gameplay
 
 	}
 
-	void GampeplayView::initialize()
+	void GampeplayView::initialize(GameplayController* gameplay_controller)
 	{
 
 	}

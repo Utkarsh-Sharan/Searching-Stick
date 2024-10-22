@@ -1,4 +1,5 @@
 #include "Gameplay/GameplayController.h"
+#include "Gameplay/GameplayView.h"
 
 namespace Gameplay
 {
@@ -28,6 +29,11 @@ namespace Gameplay
 	}
 
 	void GampeplayController::reset()
+	{
+
+	}
+
+	void GampeplayController::destroy()
 	{
 
 	}

@@ -4,15 +4,16 @@ namespace Gameplay
 {
 	class GameplayController;
 
-	class GampeplayView
+	class GameplayService
 	{
 	private:
+		GameplayController* gameplay_controller;
 
 	public:
-		GampeplayView();
-		~GampeplayView();
+		GameplayService();
+		~GameplayService();
 
-		void initialize(GameplayController* gameplay_controller);
+		void initialize();
 		void update();
 		void render();
 

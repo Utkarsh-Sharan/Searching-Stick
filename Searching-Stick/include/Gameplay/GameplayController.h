@@ -2,9 +2,14 @@
 
 namespace Gameplay
 {
+	class GameplayView;
+
 	class GampeplayController
 	{
 	private:
+		GameplayView* gameplay_view;
+
+		void destroy();
 
 	public:
 		GampeplayController();
