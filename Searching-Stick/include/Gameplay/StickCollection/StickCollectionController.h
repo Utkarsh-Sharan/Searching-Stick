@@ -39,10 +39,15 @@ namespace Gameplay
 			void resetSearchStick();
 			void resetVariables();
 
+			void sortElements();
+			bool compareElementsByData(const Stick* a, const Stick* b);
+
 			void initializeSticksArray();
 			float calculateStickHeight(int array_pos);
 
 			void processLinearSearch();
+			void processBinarySearch();
+
 			void processSearchThreadState();
 			void joinThreads();
 

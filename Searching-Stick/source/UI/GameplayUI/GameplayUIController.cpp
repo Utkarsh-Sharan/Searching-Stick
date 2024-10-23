@@ -113,7 +113,9 @@ namespace UI
                 search_type_text->setText("Linear Search");
                 break;
 
-            //to do for binary search case
+            case::Gameplay::Collection::SearchType::BINARY_SEARCH:
+                search_type_text->setText("Binary Search");
+                break;
             }
 
             search_type_text->update();
