@@ -121,6 +121,20 @@ namespace Gameplay
 			}
 		}
 
+		void StickCollectionController::sortElements()
+		{
+			//firstly sort the whole data
+			std::sort(sticks.begin(), sticks.end(), [this](const Stick* a, const Stick* b) { return compareElementsByData(a, b); });
+
+			//then update the whole stick list
+			updateSticksPosition();
+		}
+
+		bool StickCollectionController::compareElementsByData(const Stick* a, const Stick* b)
+		{
+			return (a->data < b->data);
+		}
+
 		void StickCollectionController::processLinearSearch()
 		{
 			for (int i = 0; i < sticks.size(); i++)
