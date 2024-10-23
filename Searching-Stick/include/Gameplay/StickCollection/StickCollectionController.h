@@ -47,6 +47,7 @@ namespace Gameplay
 
 			void processLinearSearch();
 			void processBinarySearch();
+
 			void processSearchThreadState();
 			void joinThreads();
 

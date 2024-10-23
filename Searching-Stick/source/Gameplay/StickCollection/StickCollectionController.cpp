@@ -116,23 +116,14 @@ namespace Gameplay
 				search_thread = std::thread(&StickCollectionController::processLinearSearch, this);
 				break;
 
-			//case SearchType::BINARY_SEARCH:
-				//to do
+			case SearchType::BINARY_SEARCH:
+				sortElements();
+				current_operation_delay = collection_model->binary_search_delay;
+				time_complexity = "O(log n)";
+
+				search_thread = std::thread(&StickCollectionController::processBinarySearch, this);
+				break;
 			}
-		}
-
-		void StickCollectionController::sortElements()
-		{
-			//firstly sort the whole data
-			std::sort(sticks.begin(), sticks.end(), [this](const Stick* a, const Stick* b) { return compareElementsByData(a, b); });
-
-			//then update the whole stick list
-			updateSticksPosition();
-		}
-
-		bool StickCollectionController::compareElementsByData(const Stick* a, const Stick* b)
-		{
-			return (a->data < b->data);
 		}
 
 		void StickCollectionController::processLinearSearch()
@@ -159,6 +150,56 @@ namespace Gameplay
 
 					sticks[i]->stick_view->setFillColor(collection_model->element_color);
 				}
+			}
+		}
+
+		void StickCollectionController::sortElements()
+		{
+			//firstly sort the whole data
+			std::sort(sticks.begin(), sticks.end(), [this](const Stick* a, const Stick* b) { return compareElementsByData(a, b); });
+
+			//then update the whole stick list
+			updateSticksPosition();
+		}
+
+		bool StickCollectionController::compareElementsByData(const Stick* a, const Stick* b)
+		{
+			return (a->data < b->data);
+		}
+
+		void StickCollectionController::processBinarySearch()
+		{
+			int left = 0;
+			int right = sticks.size();
+
+			while (left < right)
+			{
+				int mid = left + (right - left) / 2;
+
+				number_of_array_access += 2;
+				number_of_comparisons++;
+
+				ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::COMPARE_SFX);
+
+				if (sticks[mid] == stick_to_search)
+				{
+					sticks[mid]->stick_view->setFillColor(collection_model->found_element_color);
+					stick_to_search = nullptr;
+					return;
+				}
+
+				sticks[mid]->stick_view->setFillColor(collection_model->processing_element_color);
+
+				std::this_thread::sleep_for(std::chrono::milliseconds(current_operation_delay));
+
+				sticks[mid]->stick_view->setFillColor(collection_model->element_color);
+
+				number_of_array_access++;
+
+				if (sticks[mid]->data > stick_to_search->data) 
+					right = mid;
+				else 
+					left = mid;
 			}
 		}
 
