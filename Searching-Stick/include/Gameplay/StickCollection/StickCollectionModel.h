@@ -24,7 +24,7 @@ namespace Gameplay
 			const sf::Color processing_element_color = sf::Color::Red;
 
 			int linear_search_delay = 120;
-			int binary_search_delay = 100;
+			int binary_search_delay = 150;
 
 			int number_of_elements = 100;
 
