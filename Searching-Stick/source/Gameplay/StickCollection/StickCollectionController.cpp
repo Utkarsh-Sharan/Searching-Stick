@@ -175,7 +175,7 @@ namespace Gameplay
 
 		sf::String StickCollectionController::getTimeComplexity()
 		{
-			return sf::String();
+			return time_complexity;
 		}
 
 		void StickCollectionController::reset()
